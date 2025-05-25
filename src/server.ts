@@ -3,7 +3,7 @@ import express from 'express';
 import { container } from 'tsyringe';
 import { VpsConfigService } from './config/vpsConfig.service';
 import { LoggingService } from './services/logging.service';
-import { vpsAuthMiddleware } from './middleware/auth.middleware';
+// import { vpsAuthMiddleware } from './middleware/auth.middleware';
 import { handleGeminiTask } from './controllers/gemini.controller';
 
 // Services cần được đăng ký với tsyringe nếu chúng là dependency
@@ -26,7 +26,7 @@ app.get('/ping', (req, res) => {
 });
 
 // API route được bảo vệ
-app.post('/api/v1/call-gemini', vpsAuthMiddleware, handleGeminiTask);
+app.post('/api/v1/call-gemini', handleGeminiTask);
 
 
 const PORT = configService.config.PORT;
